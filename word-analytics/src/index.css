@@ -9,7 +9,7 @@
   }
   
   body {
-    font-family: "Inter", sans-serif;
+    font-family: "Inter", sans-serif, 'Courier New', Courier, monospace;
     background-color: #e1e8eb;
     display: flex;
     flex-direction: column;
