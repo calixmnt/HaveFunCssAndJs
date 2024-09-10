@@ -1,12 +1,14 @@
 import Button from "./Button.jsx";
+import { useItemsContext } from "../lib/hooks.js";
 
-const ButtonGroup = ({
-  handleMarkAllAsComplete,
-  handleRemoveAllItems,
-  handleMarkAllAsInComplete,
-  handleResetToInitial,
-}) => {
-  
+const ButtonGroup = () => {
+  const {
+    handleMarkAllAsComplete,
+    handleMarkAllAsInComplete,
+    handleResetToInitial,
+    handleRemoveAllItems,
+  } = useItemsContext();
+
   const secondaryButtons = [
     {
       text: "Mark all as complete",
@@ -33,7 +35,9 @@ const ButtonGroup = ({
           key={button.text + button.onClick.toString()}
           onClick={button.onClick}
           buttonType="secondary"
-        >{button.text}</Button>
+        >
+          {button.text}
+        </Button>
       ))}
     </section>
   );

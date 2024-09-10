@@ -1,10 +1,13 @@
-import { useState } from "react";
-import { initialItems } from "../components/lib/constants.js";
+import { createContext, useEffect, useState } from "react";
+import { initialItems } from "../lib/constants.js";
 
-const ItemsContextProvider = () => {
+export const ItemsContext = createContext();
+
+const ItemsContextProvider = ({ children }) => {
+
   const [items, setItems] = useState(() => {
     return JSON.parse(localStorage.getItem("items")) || initialItems;
-  }); // () => {} once when the component is loaded.
+  }); // () => {} for : once when the component is initialized.
 
   const handleDeleteItem = (id) => {
     const newItems = items.filter((item) => item.id !== id);
@@ -60,7 +63,22 @@ const ItemsContextProvider = () => {
     localStorage.setItem("items", JSON.stringify(items));
   }, [items]);
 
-  return <div>ItemsContextProvider</div>;
+  return (
+    <ItemsContext.Provider
+      value={
+        {items,
+        handleAddItem,
+        handleDeleteItem,
+        handleMarkAllAsComplete,
+        handleMarkAllAsInComplete,
+        handleRemoveAllItems,
+        handleResetToInitial,
+        handleToggleItem}
+      }
+    >
+      {children}
+    </ItemsContext.Provider>
+  );
 };
 
 export default ItemsContextProvider;
