@@ -1,5 +1,5 @@
-import Logo from "./Logo.jsx"
-import Counter from "./Counter.jsx"
+import Logo from "./Logo.jsx";
+import Counter from "./Counter.jsx";
 
 const Header = () => {
   return (
@@ -7,7 +7,7 @@ const Header = () => {
       <Logo />
       <Counter />
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

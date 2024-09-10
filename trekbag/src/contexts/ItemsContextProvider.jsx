@@ -1,12 +1,7 @@
-import BackgroundHeading from "./BackgroundHeading.jsx";
-import Footer from "./Footer.jsx";
-import Header from "./Header.jsx";
-import Sidebar from "./Sidebar.jsx";
-import ItemList from "./ItemList.jsx";
-import { useEffect, useState } from "react";
-import { initialItems } from "./lib/constants.js";
+import { useState } from "react";
+import { initialItems } from "../components/lib/constants.js";
 
-function App() {
+const ItemsContextProvider = () => {
   const [items, setItems] = useState(() => {
     return JSON.parse(localStorage.getItem("items")) || initialItems;
   }); // () => {} once when the component is loaded.
@@ -65,30 +60,7 @@ function App() {
     localStorage.setItem("items", JSON.stringify(items));
   }, [items]);
 
-  return (
-    <>
-      <BackgroundHeading />
-      <main>
-        <Header
-          numberOfItemsPacked={items.filter((item) => item.packed).length}
-          totalNumberOfItems={items.length}
-        />
-        <ItemList
-          handleToggleItem={handleToggleItem}
-          handleDeleteItem={handleDeleteItem}
-          items={items}
-        />
-        <Sidebar
-          handleAddItem={handleAddItem}
-          handleMarkAllAsComplete={handleMarkAllAsComplete}
-          handleMarkAllAsInComplete={handleMarkAllAsInComplete}
-          handleRemoveAllItems={handleRemoveAllItems}
-          handleResetToInitial={handleResetToInitial}
-        />
-      </main>
-      <Footer />
-    </>
-  );
-}
+  return <div>ItemsContextProvider</div>;
+};
 
-export default App;
+export default ItemsContextProvider;
