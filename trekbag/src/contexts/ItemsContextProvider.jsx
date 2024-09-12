@@ -13,7 +13,7 @@ const ItemsContextProvider = ({ children }) => {
     const newItems = items.filter((item) => item.id !== id);
     setItems(newItems);
   };
-
+  
   const handleAddItem = (newItemItext) => {
     const newItem = {
       id: new Date().getTime(),
